@@ -1,0 +1,29 @@
+# Dataset de prueba - Grafo pequeño para testing
+# Formato: NodoOrigen NodoDestino
+# Este es un grafo dirigido simple con 10 nodos
+
+# Componente principal (nodos 0-6)
+0 1
+0 2
+0 3
+1 4
+2 4
+3 5
+4 5
+5 6
+6 1
+
+# Segundo componente (nodos 7-9)
+7 8
+8 9
+9 7
+
+# Conexión entre componentes
+6 7
+
+# Algunos nodos con múltiples conexiones
+0 4
+1 5
+2 6
+3 6
+4 6
