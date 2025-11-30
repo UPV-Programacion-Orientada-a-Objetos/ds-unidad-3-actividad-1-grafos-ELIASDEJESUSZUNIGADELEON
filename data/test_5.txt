@@ -1,0 +1,9 @@
+# Grafo de prueba: 5 nodos (Visualización completa soportada)
+# Fuente: Generado para pruebas de rendimiento NeuroNet
+# Nodos: 5 | Aristas: 4
+# Ratio aristas/nodos: 0.80
+#
+0	1
+1	2
+2	3
+3	4
