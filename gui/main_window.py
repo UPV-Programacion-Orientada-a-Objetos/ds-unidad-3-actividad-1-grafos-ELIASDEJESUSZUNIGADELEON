@@ -306,13 +306,31 @@ class NeuroNetGUI:
             fin = time.time()
             
             tiempo_ms = (fin - inicio) * 1000
+            nodos_encontrados = len(resultado)
             
-            self.log_mensaje(f"✓ BFS completado: {len(resultado)} nodos encontrados en {tiempo_ms:.3f}ms", "success")
+            self.log_mensaje(f"✓ BFS completado: {nodos_encontrados:,} nodos encontrados en {tiempo_ms:.3f}ms", "success")
+            
+            # Advertencia para grafos grandes
+            if nodos_encontrados > 10000:
+                respuesta = messagebox.askyesno(
+                    "Grafo muy grande",
+                    f"Se encontraron {nodos_encontrados:,} nodos.\n\n"
+                    f"Visualizar tantos nodos puede:\n"
+                    f"• Tardar varios minutos\n"
+                    f"• Consumir mucha memoria\n"
+                    f"• Congelar la interfaz\n\n"
+                    f"¿Desea continuar de todos modos?",
+                    icon='warning'
+                )
+                if not respuesta:
+                    self.log_mensaje("⚠ Visualización cancelada (demasiados nodos)", "warning")
+                    return
             
             # Obtener aristas para visualización
             aristas = self.grafo.get_aristas()
             
             # Visualizar
+            self.log_mensaje(f"Generando visualización de {nodos_encontrados:,} nodos...", "info")
             self.visualizador.visualizar_subgrafo(
                 resultado,
                 aristas,
@@ -342,13 +360,31 @@ class NeuroNetGUI:
             fin = time.time()
             
             tiempo_ms = (fin - inicio) * 1000
+            nodos_visitados = len(resultado)
             
-            self.log_mensaje(f"✓ DFS completado: {len(resultado)} nodos visitados en {tiempo_ms:.3f}ms", "success")
+            self.log_mensaje(f"✓ DFS completado: {nodos_visitados:,} nodos visitados en {tiempo_ms:.3f}ms", "success")
+            
+            # Advertencia para grafos grandes
+            if nodos_visitados > 10000:
+                respuesta = messagebox.askyesno(
+                    "Grafo muy grande",
+                    f"Se visitaron {nodos_visitados:,} nodos.\n\n"
+                    f"Visualizar tantos nodos puede:\n"
+                    f"• Tardar varios minutos\n"
+                    f"• Consumir mucha memoria\n"
+                    f"• Congelar la interfaz\n\n"
+                    f"¿Desea continuar de todos modos?",
+                    icon='warning'
+                )
+                if not respuesta:
+                    self.log_mensaje("⚠ Visualización cancelada (demasiados nodos)", "warning")
+                    return
             
             # Obtener aristas para visualización
             aristas = self.grafo.get_aristas()
             
             # Visualizar
+            self.log_mensaje(f"Generando visualización de {nodos_visitados:,} nodos...", "info")
             self.visualizador.visualizar_subgrafo(
                 resultado,
                 aristas,
